@@ -26,5 +26,36 @@ namespace ControleDeContatos.Repositorio
             _context.SaveChanges();
             return contato;
         }
+
+        public ContatoModel BuscarPorId(Guid id)
+        {
+            return _context.Contatos.FirstOrDefault(x => x.Id == id);
+        }
+
+        public ContatoModel Atualizar(ContatoModel contato)
+        {
+            ContatoModel contatoDB = BuscarPorId(contato.Id);
+            
+            if (contatoDB == null) throw new Exception("Houve um erro na atualização do contato");
+
+            contatoDB.Nome = contato.Nome;
+            contatoDB.Celular = contato.Celular;
+            contatoDB.Email = contato.Email;
+
+            _context.Contatos.Update(contatoDB);
+            _context.SaveChanges();
+            return contato;
+        }
+
+        public bool Delete(Guid id)
+        {
+            ContatoModel contatoDB = BuscarPorId(id);
+
+            if (contatoDB == null) throw new Exception("Houve um erro na exclusão do contato");
+
+            _context.Contatos.Remove(contatoDB);
+            _context.SaveChanges();
+            return true;
+        }
     }
 }

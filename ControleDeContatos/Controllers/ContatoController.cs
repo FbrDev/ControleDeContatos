@@ -32,19 +32,28 @@ namespace ControleDeContatos.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Editar()
+        public IActionResult Editar(Guid id)
         {
-            return View();
+            var contato = _repositorio.BuscarPorId(id);
+            return View(contato);
         }
 
-        public IActionResult ApagarConfirmacao()
+        [HttpPost]
+        public IActionResult Editar(ContatoModel contato)
         {
-            return View();
+            _repositorio.Atualizar(contato);
+            return RedirectToAction("Index");
         }
 
-        public IActionResult Apagar()
+        public IActionResult ApagarConfirmacao(Guid id)
         {
-            return View();
+            return View(_repositorio.BuscarPorId(id));
+        }
+
+        public IActionResult Apagar(Guid id)
+        {
+            _repositorio.Delete(id);
+            return RedirectToAction("Index");
         }
     }
 }
