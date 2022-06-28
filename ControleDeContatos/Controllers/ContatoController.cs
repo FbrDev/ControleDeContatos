@@ -28,8 +28,20 @@ namespace ControleDeContatos.Controllers
         [HttpPost]
         public IActionResult Criar(ContatoModel contato)
         {
-            _repositorio.Adicionar(contato);
-            return RedirectToAction("Index");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _repositorio.Adicionar(contato);
+                    TempData["MensagemSucesso"] = "Contato cadastrado com sucesso";
+                }
+                return RedirectToAction("Index");
+            }
+            catch (Exception error)
+            {
+                TempData["MensagemError"] = $"Ops, Não conseguimos cadastrar seu contato, tente novamente. Detalhe do erro: {error.Message}";
+                return View(contato);
+            }
         }
 
         public IActionResult Editar(Guid id)
@@ -41,8 +53,20 @@ namespace ControleDeContatos.Controllers
         [HttpPost]
         public IActionResult Editar(ContatoModel contato)
         {
-            _repositorio.Atualizar(contato);
-            return RedirectToAction("Index");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _repositorio.Atualizar(contato);
+                    TempData["MensagemSucesso"] = "Contato editado com sucesso";
+                }
+                return RedirectToAction("Index");
+            }
+            catch (Exception error)
+            {
+                TempData["MensagemError"] = $"Ops, Não conseguimos atualizar seu contato, tente novamente. Detalhe do erro: {error.Message}";
+                return View("Editar", contato);
+            }
         }
 
         public IActionResult ApagarConfirmacao(Guid id)
@@ -52,8 +76,24 @@ namespace ControleDeContatos.Controllers
 
         public IActionResult Apagar(Guid id)
         {
-            _repositorio.Delete(id);
-            return RedirectToAction("Index");
+            try
+            {
+                var apagado = _repositorio.Delete(id);
+                if (apagado)
+                {
+                    TempData["MensagemSucesso"] = "Contato apagado com sucesso";
+                }
+                else
+                {
+                    TempData["MensagemError"] = $"Ops, Não conseguimos deletar seu contato!";
+                }
+                return RedirectToAction("Index");
+            }
+            catch (Exception error)
+            {
+                TempData["MensagemError"] = $"Ops, Não conseguimos deletar seu contato, tente novamente. Detalhe do erro: {error.Message}";
+                return RedirectToAction("Index");
+            }
         }
     }
 }
