@@ -26,6 +26,7 @@ namespace ControleDeContatos.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Criar(ContatoModel contato)
         {
             try
@@ -51,6 +52,7 @@ namespace ControleDeContatos.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Editar(ContatoModel contato)
         {
             try
