@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "IIS - DEV": {
+    "IIS - Desenvolvimento": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
@@ -24,7 +24,7 @@
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation"
       }
     },
-    "IIS - PRD": {
+    "IIS - Produção": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {

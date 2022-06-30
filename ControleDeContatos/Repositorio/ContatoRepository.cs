@@ -22,6 +22,7 @@ namespace ControleDeContatos.Repositorio
 
         public ContatoModel Adicionar(ContatoModel contato)
         {
+            contato.DataCadastro = DateTime.Now;
             _context.Contatos.Add(contato);
             _context.SaveChanges();
             return contato;
@@ -41,6 +42,7 @@ namespace ControleDeContatos.Repositorio
             contatoDB.Nome = contato.Nome;
             contatoDB.Celular = contato.Celular;
             contatoDB.Email = contato.Email;
+            contatoDB.DataAlteracao = DateTime.Now;
 
             _context.Contatos.Update(contatoDB);
             _context.SaveChanges();

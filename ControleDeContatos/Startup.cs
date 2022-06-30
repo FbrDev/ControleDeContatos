@@ -31,6 +31,7 @@ namespace ControleDeContatos
                 .AddDbContext<BancoContext>(o => o.UseSqlServer(Configuration.GetConnectionString("HOM")));
 
             services.AddScoped<IContatoRepositorio, ContatoRepository>();
+            services.AddScoped<IUsuarioRepositorio, UsuarioRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

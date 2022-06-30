@@ -26,7 +26,7 @@ namespace ControleDeContatos.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken] // Evita ataque CRFS
         public IActionResult Criar(ContatoModel contato)
         {
             try
