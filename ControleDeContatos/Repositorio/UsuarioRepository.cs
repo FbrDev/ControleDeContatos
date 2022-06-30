@@ -43,7 +43,7 @@ namespace ControleDeContatos.Repositorio
             usuarioDB.Login = usuario.Login;
             usuarioDB.Email = usuario.Email;
             usuarioDB.Perfil = usuario.Perfil;
-            usuarioDB.Senha = usuario.Senha;
+            usuarioDB.Senha = usuario.Senha == null ? usuarioDB.Senha : usuario.Senha;
             usuarioDB.DataAlteracao = DateTime.Now;
 
             _context.Usuarios.Update(usuarioDB);
@@ -60,6 +60,11 @@ namespace ControleDeContatos.Repositorio
             _context.Usuarios.Remove(usuarioDB);
             _context.SaveChanges();
             return true;
+        }
+
+        public UsuarioModel BuscarPorLogin(string login)
+        {
+            return _context.Usuarios.FirstOrDefault(x => x.Login.ToUpper() == login.ToUpper());
         }
     }
 }

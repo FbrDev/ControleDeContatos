@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ControleDeContatos.Models
 {
-    public class UsuarioModel
+    public class UsuarioSemSenhaModel
     {
         public Guid Id { get; set; }
 
@@ -15,20 +15,10 @@ namespace ControleDeContatos.Models
         public string Login { get; set; }
 
         [Required(ErrorMessage = "O Campo {0} é obrigatório")]
-        public string Senha { get; set; }
-
-        [Required(ErrorMessage = "O Campo {0} é obrigatório")]
         [DisplayName("E-Mail")]
         [EmailAddress(ErrorMessage = "O {0} está com formato inválido")]
         public string Email { get; set; }
         [Required(ErrorMessage = "O Campo {0} é obrigatório")]
         public PerfilEnum? Perfil { get; set; }
-        public DateTime DataCadastro { get; set; }
-        public DateTime? DataAlteracao { get; set; }
-
-        public bool senhaValida(string senha)
-        {
-            return Senha == senha;
-        }
     }
 }

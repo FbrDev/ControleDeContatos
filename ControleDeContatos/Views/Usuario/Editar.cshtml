@@ -1,0 +1,40 @@
+﻿@using ControleDeContatos.Enums
+@model UsuarioModel
+
+@{
+    ViewData["Title"] = "Editar usuário";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"] @Model.Nome</h1>
+</div>
+
+<form method="post" asp-controller="Usuario" asp-action="Editar">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" class="form-control" placeholder="Digite o nome do usuario" asp-for="Nome">
+        @Html.ValidationMessageFor(x => x.Nome)
+    </div>
+    <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" class="form-control" placeholder="Digite o e-mail do usuario" asp-for="Email">
+        @Html.ValidationMessageFor(x => x.Email)
+    </div>
+    <div class="form-group">
+        <label for="login">Login</label>
+        <input type="text" class="form-control" placeholder="Digite o login do usuario" asp-for="Login">
+        @Html.ValidationMessageFor(x => x.Login)
+    </div>
+    <div class="form-group">
+        <label for="perfil">Perfil</label>
+        <select class="form-control" asp-for="Perfil">
+            <option value="">Selecione</option>
+            <option value="@PerfilEnum.Admin">Administrador</option>
+            <option value="@PerfilEnum.Padrao">Padrão</option>
+            @Html.ValidationMessageFor(x => x.Perfil)
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Editar</button>
+    <a class="btn btn-secondary btn-block" asp-action="Index" role="button">Voltar</a>
+</form>
