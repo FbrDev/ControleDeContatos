@@ -12,6 +12,7 @@ namespace ControleDeContatos.Interfaces
         UsuarioModel BuscarPorId(Guid id);
         UsuarioModel Adicionar(UsuarioModel usuario);
         UsuarioModel Atualizar(UsuarioModel usuario);
+        UsuarioModel AlterarSenha(AlterarSenhaModel alterarSenhaModel);
         bool Delete(Guid id);
     }
 }
