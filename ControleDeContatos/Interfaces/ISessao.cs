@@ -1,6 +1,6 @@
 ﻿using ControleDeContatos.Models;
 
-namespace ControleDeContatos.Helper
+namespace ControleDeContatos.Interfaces
 {
     public interface ISessao
     {

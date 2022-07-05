@@ -1,4 +1,5 @@
-﻿using ControleDeContatos.Models;
+﻿using ControleDeContatos.Interfaces;
+using ControleDeContatos.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
