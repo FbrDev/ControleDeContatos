@@ -1,10 +1,10 @@
 # Controle de Contatos
-**Controle de contatos** é um projeto **CRUD** desenvolvido em curso no intuito de entender como funciona o **ASP .NET MVC 5**. Possui as funcionalidades de um CRUD que foi feito para **cadastro de contatos** e um **sistema de login com restrições e permissões de acesso**.
+**Controle de contatos** é um projeto **CRUD** desenvolvido em curso no intuito de entender como funciona o **ASP .NET MVC 5**. Possui as funcionalidades de um CRUD que foi feito para **cadastro de contatos**, **sistema de login com restrições e permissões de acesso** e **recuperação de senha com envio de e-mail**.
 
 ## Demostração
 Uma apresentação de como o sistema funciona:
 
-![Programa Rodando]()
+<img src="ProgramaRodando.gif">
 
 ## Tecnologias
 
