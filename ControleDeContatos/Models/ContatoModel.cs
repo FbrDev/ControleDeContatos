@@ -19,8 +19,10 @@ namespace ControleDeContatos.Models
         [Required(ErrorMessage = "O Campo {0} é obrigatório")]
         [Phone(ErrorMessage = "O {0} está com formato inválido")]
         public string Celular { get; set; }
-
+        public Guid? UsuarioId { get; set; }
         public DateTime DataCadastro { get; set; }
         public DateTime? DataAlteracao { get; set; }
+
+        public UsuarioModel Usuario { get; set; }
     }
 }

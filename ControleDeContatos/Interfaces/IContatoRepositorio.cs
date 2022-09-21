@@ -6,7 +6,7 @@ namespace ControleDeContatos.Interfaces
 {
     public interface IContatoRepositorio
     {
-        List<ContatoModel> BuscarTodos();
+        List<ContatoModel> BuscarTodos(Guid usuarioId);
         ContatoModel BuscarPorId(Guid id);
         ContatoModel Adicionar(ContatoModel contato);
         ContatoModel Atualizar(ContatoModel contato);

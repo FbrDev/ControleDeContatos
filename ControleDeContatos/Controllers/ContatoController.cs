@@ -11,14 +11,17 @@ namespace ControleDeContatos.Controllers
     public class ContatoController : Controller
     {
         private readonly IContatoRepositorio _repositorio;
-        public ContatoController(IContatoRepositorio repositorio)
+        private readonly ISessao _sessao;
+        public ContatoController(IContatoRepositorio repositorio, ISessao sessao)
         {
             _repositorio = repositorio;
+            _sessao = sessao;
         }
 
         public IActionResult Index()
         {
-            List<ContatoModel> contatos = _repositorio.BuscarTodos();
+            UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+            List<ContatoModel> contatos = _repositorio.BuscarTodos(usuarioLogado.Id);
             return View(contatos);
         }
 
@@ -35,6 +38,8 @@ namespace ControleDeContatos.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+                    contato.UsuarioId = usuarioLogado.Id;
                     _repositorio.Adicionar(contato);
                     TempData["MensagemSucesso"] = "Contato cadastrado com sucesso";
                 }
@@ -61,6 +66,8 @@ namespace ControleDeContatos.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+                    contato.UsuarioId = usuarioLogado.Id;
                     _repositorio.Atualizar(contato);
                     TempData["MensagemSucesso"] = "Contato editado com sucesso";
                 }

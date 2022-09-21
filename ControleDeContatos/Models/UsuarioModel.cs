@@ -1,6 +1,7 @@
 ﻿using ControleDeContatos.Enums;
 using ControleDeContatos.Helper;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -26,6 +27,8 @@ namespace ControleDeContatos.Models
         public PerfilEnum? Perfil { get; set; }
         public DateTime DataCadastro { get; set; }
         public DateTime? DataAlteracao { get; set; }
+
+        public virtual List<ContatoModel> Contatos { get; set; }
 
         public bool senhaValida(string senha)
         {
