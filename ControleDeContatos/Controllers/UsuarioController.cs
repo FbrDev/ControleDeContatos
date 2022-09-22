@@ -3,6 +3,7 @@ using ControleDeContatos.Interfaces;
 using ControleDeContatos.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 
 namespace ControleDeContatos.Controllers
 {
@@ -10,9 +11,11 @@ namespace ControleDeContatos.Controllers
     public class UsuarioController : Controller
     {
         private readonly IUsuarioRepositorio _repositorio;
-        public UsuarioController(IUsuarioRepositorio repositorio)
+        private readonly IContatoRepositorio _contatorepositorio;
+        public UsuarioController(IUsuarioRepositorio repositorio, IContatoRepositorio contatoRepositorio)
         {
             _repositorio = repositorio;
+            _contatorepositorio = contatoRepositorio;   
         }
 
         public IActionResult Index()
@@ -23,6 +26,11 @@ namespace ControleDeContatos.Controllers
         public IActionResult Criar()
         {
             return View();
+        }
+
+        public IActionResult ListarContatosPorUsuarioId(Guid id)
+        {
+            return PartialView("_ContatosUsuario", _contatorepositorio.BuscarTodos(id));
         }
 
         [HttpPost]

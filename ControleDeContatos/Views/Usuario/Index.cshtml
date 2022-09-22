@@ -34,6 +34,7 @@
                 <th scope="col">Login</th>
                 <th scope="col">E-mail</th>
                 <th scope="col">Perfil</th>
+                <th scope="col">Total de Contatos</th>
                 <th scope="col">Data Cadastro</th>
                 <th scope="col">Ações</th>
             </tr>
@@ -48,6 +49,11 @@
                         <td>@item.Login</td>
                         <td>@item.Email</td>
                         <td>@(item.Perfil == ControleDeContatos.Enums.PerfilEnum.Admin ? "Administrador" : "Padrão")</td>
+                        <td>
+                            <a href="javascript:" usuario-id="@item.Id" class="btn btn-success btn-sm btn-total-contatos">
+                                @(item.Contatos != null && item.Contatos.Any() ? item.Contatos.Count() : 0)
+                            </a>
+                        </td>
                         <td>@item.DataCadastro</td>
                         <td>
                             <div class="btn-group" role="group">
@@ -64,4 +70,21 @@
             }
         </tbody>
     </table>
+
+    <div id="modalContatosUsuarios" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Listagem de Contatos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="ListaContatosUsuario"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
